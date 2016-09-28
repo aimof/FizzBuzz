@@ -1,14 +1,14 @@
 defmodule FizzBuzz do
 
   def fizzBuzz(num) do
-    _notFB(_fizz(_sumToOneDigit(Integer.to_charlist(num))) <> _buzz(_getLastDigit(Integer.to_charlist(num))) , num)
+    _notFB(_fizz(oneDigit(Integer.to_charlist(num))) <> _buzz(_getLastDigit(Integer.to_charlist(num))) , num)
   end
 
-  def _sumDigit([head | []]), do: head
-  def _sumDigit([head | tail]), do: Integer.to_charlist(head - 48 + _sumDigit(tail))
+  def sumDigit([head | []]), do: head - 48
+  def sumDigit([head | tail]), do: head - 48 + sumDigit(tail)
 
-  def _sumToOneDigit([head | []]), do: head - 48
-  def _sumToOneDigit(list), do: _sumToOneDigit(_sumDigit(list))
+  def oneDigit([head | []]), do: head - 48
+  def oneDigit(list), do: oneDigit(Integer.to_charlist(sumDigit(list)))
 
   def _fizz(3), do: "Fizz"
   def _fizz(6), do: "Fizz"
